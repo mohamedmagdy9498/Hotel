@@ -15,7 +15,7 @@ public class Reception {
 
         PreparedStatement ps;
          ResultSet rs; 
-                    public boolean RecptionEnter (String username,String password)
+                    public int RecptionEnter (String username,String password)
                     {
                     
                     try {
@@ -27,19 +27,19 @@ public class Reception {
                 rs=ps.executeQuery();
                 
                 if(rs.next())
-                {
-         
-                    return true;
+                { int k=rs.getInt("id");
+                 
+                    return k;
                     
                 }
                 else {
                     
-                    return false;
+                    return 0;
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    return false;
+                    return 0;
                     
                     }
        

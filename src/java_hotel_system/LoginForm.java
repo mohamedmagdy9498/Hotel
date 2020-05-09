@@ -163,13 +163,14 @@ public class LoginForm extends javax.swing.JFrame {
         }
         else if(password.trim().equals(""))
         {
-          JOptionPane.showMessageDialog(rootPane, "Enter Your Password to Login", "Empty Password", 2);
         }
         else
         {
             Reception rec=new Reception ();
-            if(rec.RecptionEnter(username, password))
-            {
+           int k= rec.RecptionEnter(username, password);
+            if(k>0)
+            {JOptionPane.showMessageDialog(rootPane, "Your ID Is----->"+k, "Receptioist Login", JOptionPane.INFORMATION_MESSAGE);
+
                 MainForm mainform=new MainForm();
                 mainform.setVisible(true);
                 mainform.pack();

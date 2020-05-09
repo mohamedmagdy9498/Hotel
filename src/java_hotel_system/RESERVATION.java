@@ -18,19 +18,20 @@ public class RESERVATION {
 //ALTER TABLE rooms ADD CONSTRAINT fk_type_id FOREIGN KEY(type) REFERENCES type(id) ON DELETE CASCADE
                     CONNECTION myconnection=new CONNECTION();
                     ROOMS room=new ROOMS ();
- public boolean addReservation(int client_id,int room_type,String dateIn,String dateOut)
+ public boolean addReservation(int client_id,int room_type,String dateIn,String dateOut,int Recp)
     {
   
         PreparedStatement st;
         ResultSet rs; 
-        String addQuery="INSERT INTO `reservations`(`client_id`, `room_number`, `date_in`, `date_out`) VALUES (?,?,?,?)";
+        String addQuery="INSERT INTO `reservations`(`client_id`, `room_number`, `date_in`, `date_out`, `RepID`) VALUES (?,?,?,?,?)";
         try {
             st=myconnection.CreateConnection().prepareStatement(addQuery);
             st.setInt(1, client_id);
             st.setInt(2, room_type);
             st.setString(3, dateIn);
             st.setString(4, dateOut);
-           
+            st.setInt(5, Recp);
+
             if(room.ISRoomReserved(room_type).equals("No"))
             {
             
@@ -59,18 +60,19 @@ public class RESERVATION {
  
               return false; 
     }
- public boolean editReservation(int reservation_id,int client_id,int room_number,String dataIn,String dateOut)
+ public boolean editReservation(int reservation_id,int client_id,int room_number,String dataIn,String dateOut,int Recep)
     {
       PreparedStatement st;
         ResultSet rs; 
-        String editQuery="UPDATE `reservations` SET `client_id`=?,`room_number`=?,`date_in`=?,`date_out`=? WHERE `id`=?";
+        String editQuery="UPDATE `reservations` SET `client_id`=?,`room_number`=?,`date_in`=?,`date_out`=?,`RepID`=? WHERE `id`=?";
         try {
             st=myconnection.CreateConnection().prepareStatement(editQuery);
             st.setInt(1, client_id);
             st.setInt(2, room_number);
             st.setString(3, dataIn);
             st.setString(4, dateOut);
-            st.setInt(5, reservation_id);
+            st.setInt(5, Recep);
+            st.setInt(6, reservation_id);
 
             return (st.executeUpdate()>0);
            
@@ -123,13 +125,13 @@ PreparedStatement st;
                         Object [] row;
                         while(rs.next())
                         {
-                         row=new Object[5];
+                         row=new Object[6];
                          row[0]=rs.getInt(1);
                          row[1]=rs.getInt(2);
                          row[2]=rs.getInt(3);
                          row[3]=rs.getString(4);
                          row[4]=rs.getString(5);
-
+                         row[5]=rs.getInt(6);
                          
                          tableModel.addRow(row);
                         }
@@ -169,5 +171,45 @@ PreparedStatement st;
                     
       
       
+}
+     
+     public void fillReservationInformationJTABLE(JTable table)
+    {
+      PreparedStatement ps;
+      ResultSet      rs;
+      String SelectQuery="SELECT * FROM clients,reservations WHERE clients.id=reservations.client_id";
+                    try {
+                        ps=myconnection.CreateConnection().prepareStatement(SelectQuery);
+                        rs=ps.executeQuery();
+                        DefaultTableModel tableModel =(DefaultTableModel)table.getModel();
+                        
+                        Object [] row;
+                        while(rs.next())
+                        {
+
+                         row=new Object[11];
+                         row[0]=rs.getInt(1);
+                         row[1]=rs.getString(2);
+                         row[2]=rs.getString(3);
+                         row[3]=rs.getString(4);
+                         row[4]=rs.getString(5);
+                         row[5]=rs.getInt(6);
+                         row[6]=rs.getInt(7);
+                         row[7]=rs.getInt(8);
+                         row[8]=rs.getString(9);
+                         row[9]=rs.getString(10);
+                         row[10]=rs.getInt(11);
+
+                                 
+                         tableModel.addRow(row);
+                        }
+                        
+                        
+                        
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Clients.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+     
+     
 }
 }
