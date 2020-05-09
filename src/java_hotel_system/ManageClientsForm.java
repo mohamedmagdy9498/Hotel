@@ -5,6 +5,7 @@
  */
 package java_hotel_system;
 
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,7 +44,7 @@ public class ManageClientsForm extends javax.swing.JFrame {
         jTextFieldFNAME = new javax.swing.JTextField();
         jTextFieldLNAME = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldPHONE = new javax.swing.JTextField();
+        jTextFieldPHONE1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldEMAIL = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -54,6 +55,8 @@ public class ManageClientsForm extends javax.swing.JFrame {
         jButtonREMOVECLIENTS = new javax.swing.JButton();
         jButtonCLEARFIELDS = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTextFieldPHONE2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,7 +75,7 @@ public class ManageClientsForm extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(328, 328, 328)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,11 +103,16 @@ public class ManageClientsForm extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Last Name:");
 
-        jTextFieldPHONE.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextFieldPHONE1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextFieldPHONE1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPHONE1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Phone:");
+        jLabel5.setText("Phone1:");
 
         jTextFieldEMAIL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -118,7 +126,7 @@ public class ManageClientsForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "First Name", "Last Name", "Phone", "Email"
+                "ID", "First Name", "Last Name", "Phone1", "Phone2", "Email"
             }
         )
         {public boolean iscelledittable(int row , int column){return false;}}
@@ -126,6 +134,7 @@ public class ManageClientsForm extends javax.swing.JFrame {
     );
     jTable1.setGridColor(new java.awt.Color(255, 255, 51));
     jTable1.setSelectionBackground(new java.awt.Color(0, 102, 51));
+    jTable1.getTableHeader().setReorderingAllowed(false);
     jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             jTable1MouseClicked(evt);
@@ -186,11 +195,22 @@ public class ManageClientsForm extends javax.swing.JFrame {
         }
     });
 
+    jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+    jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel7.setText("Phone2:");
+
+    jTextFieldPHONE2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+    jTextFieldPHONE2.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jTextFieldPHONE2ActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -206,25 +226,25 @@ public class ManageClientsForm extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jTextFieldFNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(10, 10, 10)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextFieldPHONE, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                        .addComponent(jTextFieldEMAIL)))
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addComponent(jButtonADDCLIENTS, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(29, 29, 29)
                     .addComponent(jButtonEDITCLIENTS, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonREMOVECLIENTS, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jButtonCLEARFIELDS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addComponent(jButtonCLEARFIELDS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldPHONE1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                        .addComponent(jTextFieldEMAIL)
+                        .addComponent(jTextFieldPHONE2))))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(jButtonRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
@@ -234,9 +254,9 @@ public class ManageClientsForm extends javax.swing.JFrame {
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel1Layout.createSequentialGroup()
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(26, 26, 26)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
                         .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -249,23 +269,25 @@ public class ManageClientsForm extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addComponent(jTextFieldLNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextFieldPHONE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldPHONE1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldPHONE2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addGap(7, 7, 7)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(jTextFieldEMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(50, 50, 50)
+                    .addGap(33, 33, 33)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButtonADDCLIENTS, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                         .addComponent(jButtonREMOVECLIENTS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonEDITCLIENTS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGap(18, 18, 18)
                     .addComponent(jButtonCLEARFIELDS, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(18, 18, 18)
             .addComponent(jButtonRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
             .addContainerGap())
@@ -275,11 +297,11 @@ public class ManageClientsForm extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
 
     pack();
@@ -289,16 +311,17 @@ public class ManageClientsForm extends javax.swing.JFrame {
     
     String fname=jTextFieldFNAME.getText();
     String lname=jTextFieldLNAME.getText();
-    String phone=jTextFieldPHONE.getText();
+    String phone1=jTextFieldPHONE1.getText();
+    String phone2=jTextFieldPHONE2.getText();
     String email=jTextFieldEMAIL.getText();
-    if(fname.trim().equals("")|| lname.trim().equals("") || phone.trim().equals("") || email.trim().equals(""))
+    if(fname.trim().equals("")|| lname.trim().equals("") || phone1.trim().equals("") || email.trim().equals(""))
     {
     
            JOptionPane.showMessageDialog(rootPane, "Requried Enter Full Fields", "Empty Fields", JOptionPane.WARNING_MESSAGE);
 
     }
     else{
-       if(    clients.addClients(fname, lname, phone, email))
+       if(    clients.addClients(fname, lname, phone1, phone2, email))
     {
        JOptionPane.showMessageDialog(rootPane, "New Client Added Successfully", "Add Client", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -319,8 +342,9 @@ public class ManageClientsForm extends javax.swing.JFrame {
     jTextFieldID.setText(model.getValueAt(rIndex, 0).toString());
     jTextFieldFNAME.setText(model.getValueAt(rIndex, 1).toString());
     jTextFieldLNAME.setText(model.getValueAt(rIndex, 2).toString());
-    jTextFieldPHONE.setText(model.getValueAt(rIndex, 3).toString());
-    jTextFieldEMAIL.setText(model.getValueAt(rIndex, 4).toString());
+    jTextFieldPHONE1.setText(model.getValueAt(rIndex, 3).toString());
+    jTextFieldPHONE2.setText(model.getValueAt(rIndex, 4).toString());
+    jTextFieldEMAIL.setText(model.getValueAt(rIndex, 5).toString());
     
 
     }//GEN-LAST:event_jTable1MouseClicked
@@ -329,9 +353,10 @@ public class ManageClientsForm extends javax.swing.JFrame {
       int id=0;
     String fname=jTextFieldFNAME.getText();
     String lname=jTextFieldLNAME.getText();
-    String phone=jTextFieldPHONE.getText();
+    String phone1=jTextFieldPHONE1.getText();
+    String phone2=jTextFieldPHONE2.getText();
     String email=jTextFieldEMAIL.getText();
-    if(fname.trim().equals("")|| lname.trim().equals("") || phone.trim().equals("") || email.trim().equals(""))
+    if(fname.trim().equals("")|| lname.trim().equals("") || phone1.trim().equals("") ||  email.trim().equals(""))
     {
     
            JOptionPane.showMessageDialog(rootPane, "Requried Enter Full Fields", "Empty Fields", JOptionPane.WARNING_MESSAGE);
@@ -340,7 +365,7 @@ public class ManageClientsForm extends javax.swing.JFrame {
     else{
         try{
          id=Integer.valueOf(jTextFieldID.getText());
-            if(    clients.editCilent(id,fname, lname, phone, email))
+            if(    clients.editCilent(id,fname, lname, phone1, phone2, email))
     {
        JOptionPane.showMessageDialog(rootPane, " Client Data Updated Successfully", "Edit Client", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -354,8 +379,10 @@ public class ManageClientsForm extends javax.swing.JFrame {
         {
        JOptionPane.showMessageDialog(rootPane, ex.getMessage()+"Enter the Cilent ID", "Client ID Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-    
+//        catch(SQLException e){
+//            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Client ID Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//    
     
     
     } 
@@ -388,7 +415,8 @@ public class ManageClientsForm extends javax.swing.JFrame {
         jTextFieldID.setText("");
         jTextFieldFNAME.setText("");
         jTextFieldLNAME.setText("");
-        jTextFieldPHONE.setText("");
+        jTextFieldPHONE1.setText("");
+        jTextFieldPHONE2.setText("");
         jTextFieldEMAIL.setText("");
         
         
@@ -396,10 +424,18 @@ public class ManageClientsForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCLEARFIELDSActionPerformed
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
- jTable1.setModel(new DefaultTableModel(null,new Object[]{"ID","FirstName","lastName","Phone","Email"}));
+ jTable1.setModel(new DefaultTableModel(null,new Object[]{"ID","First Name","Last Name","Phone1","Phone2","Email"}));
         clients.fillClientsJTABLE(jTable1);       
  
     }//GEN-LAST:event_jButtonRefreshActionPerformed
+
+    private void jTextFieldPHONE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPHONE1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPHONE1ActionPerformed
+
+    private void jTextFieldPHONE2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPHONE2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPHONE2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -448,6 +484,7 @@ public class ManageClientsForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -456,6 +493,7 @@ public class ManageClientsForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldFNAME;
     private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldLNAME;
-    private javax.swing.JTextField jTextFieldPHONE;
+    private javax.swing.JTextField jTextFieldPHONE1;
+    private javax.swing.JTextField jTextFieldPHONE2;
     // End of variables declaration//GEN-END:variables
 }
