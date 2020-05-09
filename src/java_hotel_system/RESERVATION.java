@@ -60,19 +60,18 @@ public class RESERVATION {
  
               return false; 
     }
- public boolean editReservation(int reservation_id,int client_id,int room_number,String dataIn,String dateOut,int Recep)
+ public boolean editReservation(int reservation_id,int client_id,int room_number,String dataIn,String dateOut)
     {
       PreparedStatement st;
         ResultSet rs; 
-        String editQuery="UPDATE `reservations` SET `client_id`=?,`room_number`=?,`date_in`=?,`date_out`=?,`RepID`=? WHERE `id`=?";
+        String editQuery="UPDATE `reservations` SET `client_id`=?,`room_number`=?,`date_in`=?,`date_out`=? WHERE `id`=?";
         try {
             st=myconnection.CreateConnection().prepareStatement(editQuery);
             st.setInt(1, client_id);
             st.setInt(2, room_number);
             st.setString(3, dataIn);
             st.setString(4, dateOut);
-            st.setInt(5, Recep);
-            st.setInt(6, reservation_id);
+            st.setInt(5, reservation_id);
 
             return (st.executeUpdate()>0);
            
